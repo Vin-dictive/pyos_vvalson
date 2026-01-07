@@ -1,9 +1,10 @@
 name: Release
 
 on:
-  release:
-    types:
-      - published
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions: {} # no permissions to the token at global level
 
