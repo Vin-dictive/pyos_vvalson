@@ -32,7 +32,7 @@ jobs:
       - name: Install hatch
         run: |
             python -m pip install --upgrade pip
-            python -m pip install --upgrade hatch
+            python -m pip install hatch
 
       - name: Build package using Hatch
         run: |
