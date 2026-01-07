@@ -42,13 +42,16 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: testpypi
-      url: https://test.pypi.org/project/pyos_vvalson/
     permissions:
       contents: read # this job needs read access
       id-token: write # but also needs to be able to write the publishing token
     steps:
-      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@v4
         with:
-          name: dist.zip
+          name: release-dists
           path: dist/
-      - uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
